@@ -21,12 +21,29 @@ class linkedList {
             while(current.next) {
                 current = current.next;
             }
+            current.next = node;
         }
-
-        current.next = node;
-
         this.size++;
     }
 
+    insertAt(data, index) {
+        const node = new Node(data);
+        let current = this.head;
 
+        if(index < 0 || index >= this.size) {
+            return false;
+        }else if(index === 0) {
+            node.next = this.head;
+            this.head = node;
+        } else {
+            let i = 1;
+            while (i < index) {
+                current = current.next;
+                i++;
+            }
+            node.next = current.next;
+            current.next = node;
+        }
+        this.size++;
+    }
 }
