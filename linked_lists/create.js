@@ -32,7 +32,7 @@ class linkedList {
 
         if(index < 0 || index >= this.size) {
             return false;
-        }else if(index === 0) {
+        } else if(index === 0) {
             node.next = this.head;
             this.head = node;
         } else {
@@ -45,5 +45,26 @@ class linkedList {
             current.next = node;
         }
         this.size++;
+    }
+
+    removeFrom(index) {
+        let prev = this.head;
+        let current = this.head.next;
+
+        if(index < 0 || index >= this.size || this.head === null) {
+            return false;
+        } else if(index === 0) {
+            this.head = current;
+        } else {
+            let i = 1;
+            while(i < index) {
+                prev = current;
+                current = current.next;
+                i++;
+            }
+            prev.next = current.next;
+        }
+        this.size--;
+        return current.data;
     }
 }
