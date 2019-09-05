@@ -67,4 +67,41 @@ class linkedList {
         this.size--;
         return current.data;
     }
+
+    removeElement(data) {
+        let prev = this.head;
+        let current = this.head.next;
+
+        if(this.head === null) {
+            return false;
+        } else if(this.head.data === data) {
+            this.head = current;
+            this.size--;
+            return prev;
+        } else {
+            while(current != null) {
+                if (current.data === data) {
+                    prev.next = current.next;
+                    this.size--;
+                    return current;
+                }
+                prev = current;
+                current = current.next;
+            }
+        }
+        return false;
+    }
+
+    indexOf(data) {
+        let current = this.head;
+        let i = 0;
+        while(current != null) {
+            if(current.data === data) {
+                return i;
+            }
+            i++
+            current = current.next;
+        }
+        return false;
+    }
 }
