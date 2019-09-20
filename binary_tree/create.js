@@ -70,5 +70,26 @@ class BinarySearchTree {
         }
     }
 
+    findMinNode(node) {
+        if(node.left === null) {
+            return node;
+        }
+        return this.findMinNode(node.left);
+    }
+
+    search(node, data) {
+        if(node === null) {
+            return false;
+        }
+
+        if(node.data === data) {
+            return node;
+        }
+        if(data < this.root.data) {
+            this.search(this.root.left);
+        } else {
+            this.search(this.root.right);
+        }
+    }
     
 }
