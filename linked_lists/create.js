@@ -24,6 +24,7 @@ class linkedList {
             current.next = node;
         }
         this.size++;
+        return node;
     }
 
     insertAt(data, index) {
@@ -103,5 +104,55 @@ class linkedList {
             current = current.next;
         }
         return false;
+    }
+    findMin() {
+        if(this.size < 2) {
+            return this.head;
+        }
+        let current = this.head.next;
+        let min = this.head;
+        while(current) {
+            if(current.data < min.data) {
+                min = current;
+            }
+            current = current.next;
+        }
+        return min;
+    }
+
+    topKNumbers(k) {
+        if(k >= this.size) {
+            return this;
+        }
+        if(this.size < 2) {
+            return this.head;
+        }
+        const topKList = new linkedList();
+        topKList.add(this.head.data);
+        k -= 1;
+        let current = this.head.next;
+        while(current) {
+            if(k) {
+                if(current.data >= topKList.head) {
+                    topKList.add(current.data);
+                } else {
+                    this.insertAt(current.data, 0);
+                }
+            } else {
+                if(current.data > this.head) {
+                    topKList.add(current.data);
+                    let min = topKList.findMin();
+                    let temp = min;
+                    temp.next = this.head.next;
+                    this.head = temp;
+                    min.data = min.next.data;
+                    min.next = min.next.next;
+                }
+
+            }
+            current = current.next;
+        }
+        return topKList;
+
     }
 }
