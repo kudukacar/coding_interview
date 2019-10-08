@@ -139,12 +139,12 @@ class linkedList {
                     this.insertAt(current.data, 0);
                 }
             } else {
-                if(current.data > this.head) {
+                if(current.data > topKList.head) {
                     topKList.add(current.data);
                     let min = topKList.findMin();
                     let temp = min;
-                    temp.next = this.head.next;
-                    this.head = temp;
+                    temp.next = topKList.head.next;
+                    topKList.head = temp;
                     min.data = min.next.data;
                     min.next = min.next.next;
                 }
@@ -171,5 +171,38 @@ class linkedList {
             current = next;
         }
         this.head = prev;   
+    }
+
+    circular() {
+        if(this.size < 2) {
+            return false;
+        }
+
+        let current = this.head.next;
+
+        while(current) {
+            if(current === this.head) {
+                return true;
+            }
+            current = current.next;
+        }
+        return false;
+    }
+
+    cyclic() {
+        if(this.size < 2) {
+            return false;
+        }
+        let fast = this.head.next;
+        let slow = this.head;
+
+        while(fast) {
+            if(fast === slow) {
+                return true;
+            }
+            fast = fast.next.next;
+            slow = slow.next;
+        }
+        return false;
     }
 }

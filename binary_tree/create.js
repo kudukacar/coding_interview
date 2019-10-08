@@ -91,5 +91,23 @@ class BinarySearchTree {
             this.search(this.root.right);
         }
     }
+
+    createBalancedBST(linkedList) {
+        if(linkedList.head === null || linkedList.head.next === null) {
+            return linkedList;
+        }
+        let fastNode = linkedList.head.next;
+        let slowNode = linkedList.head;
+        while(fastNode !== null) {
+            fastNode = fastNode.next.next;
+            slowNode = slowNode.next;
+        }
+        const rightLinkedList = slowNode.next.next;
+        const root = new Node(slowNode.next.data);
+        slowNode.next = null;
+        root.left = this.createBalancedBST(linkedList);
+        root.right = this.createBalancedBST(rightLinkedList);
+        return root;
+    }
     
 }
