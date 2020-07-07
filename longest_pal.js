@@ -3,13 +3,12 @@ const longestPal = (string) => {
     let longest = "";
     let count = 0;
 
-
     for (let i = 0; i < length; i++) {
         if (string[i] === string[i + 1]) {
             count += 2;
             const right = i + 1
             let increment = 1;
-            while (i - increment > 0 || right + increment < length) {
+            while (i - increment > 0 && right + increment < length) {
                 if (string[i - increment] === string[right + increment]) {
                     count += 2;
                     increment++;
@@ -26,7 +25,7 @@ const longestPal = (string) => {
             const left = i - 1;
             const right = i + 1;
             let increment = 1;
-            while (left - increment >= 0 || right + increment < length) {
+            while (left - increment >= 0 && right + increment < length) {
                 if (string[left - increment] === string[right + increment]) {
                     count += 2;
                     increment++;

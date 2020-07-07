@@ -85,16 +85,16 @@ class BinarySearchTree {
         if(node.data === data) {
             return node;
         }
-        if(data < this.root.data) {
-            this.search(this.root.left);
+        if(data < this.node.data) {
+            this.search(this.node.left, data);
         } else {
-            this.search(this.root.right);
+            this.search(this.node.right, data);
         }
     }
 
     createBalancedBST(linkedList) {
         if(linkedList.head === null || linkedList.head.next === null) {
-            return linkedList;
+            return new Node(linkedList.head.data);
         }
         let fastNode = linkedList.head.next;
         let slowNode = linkedList.head;
@@ -108,6 +108,18 @@ class BinarySearchTree {
         root.left = this.createBalancedBST(linkedList);
         root.right = this.createBalancedBST(rightLinkedList);
         return root;
+    }
+
+    preorderSearch(node, data) {
+        if(node === null) {
+            return false;
+        }
+
+        if(node.data === data) {
+            return node;
+        }
+        this.preorderSearch(node.left, data);
+        this.preorderSearch(node.right, data);
     }
     
 }

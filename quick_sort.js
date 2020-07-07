@@ -6,4 +6,4 @@ const quickSort = (array) => {
     const left = array.slice(1).filter(ele => ele <= pivot);
     const right = array.slice(1).filter(ele => ele > pivot);
     return quickSort(left).concat([pivot], quickSort(right)); 
-} 
+}

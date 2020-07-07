@@ -1,7 +1,6 @@
 class hashSet {
     constructor(limit = 8) {
         this.storage = new Array(8);
-        this.size = 0;
         this.limit = limit;
     }
 
